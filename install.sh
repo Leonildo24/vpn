@@ -14,4 +14,5 @@ apt-get install termux-api -y
 chmod -R 777 /data/data/com.termux/files/usr/bin/*
 echo abrindo 
 sleep 2
+rm -rf /data/data/com.termux/files/home/vpn
 routervpn
