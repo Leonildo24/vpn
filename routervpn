@@ -1,0 +1,112 @@
+#!/bin/bash
+hora=`date +"%H"`
+if [ $hora -lt 13 ];then
+    mensagem="Bom dia"
+elif [ $hora -gt 12 -a $hora -lt 20 ]; then
+    mensagem="Boa tarde"
+else
+    mensagem="Boa noite"
+fi
+
+x="teste"
+menu ()
+{
+while true $x != "teste"
+do
+clear
+rm -rf /data/data/com.termux/files/home/instalador
+v="\033[0;31m"
+b="\033[1;37m"
+a="\033[1;32m"
+A="\033[1;36m"
+c="\033[5;31m"
+port="8080"
+#echo -e "\033[5;31mteste\033[1;37m"
+ip=$(ifconfig | awk -F: '/inet addr/ { print $2 } '| sed s/Bcast//g | sed s/Mask//g | sed s/P-t-P//g | sed '1d')
+#nome=$(cat /data/data/com.termux/files/home/user)
+echo -e "\033[0;34m=============================================\033[01;37m"
+echo ""
+echo -e "              \033[1;36mRoute script\033[1;37m"
+echo ""
+echo -e "\033[0;34m
+=============================================\033[01;37m"
+
+echo -e "Criado por: \033[5;31mLeo-mods\033[1;37m"
+echo -e "$mensagem \033[1;33m$nome\033[1;37m"
+echo ""
+echo -e "\033[1;32m[ 1 ]\033[1;37m \033[1;36mRoteador vpn$b"
+echo""
+echo -e "\033[1;32m[ 2 ]\033[1;37m \033[1;36mSSh Server Lifetime$b"
+echo""
+echo -e "\033[1;32m[ 3 ]\033[1;37m \033[1;36mCanal / Tutoriais $b"
+echo""
+echo -e "\033[1;32m[ 5 ]$b \033[1;36mSair do programa\033[1;37m"
+echo ""
+echo -e "\033[0;34m
+==============================================\033[01;37m"
+
+echo "Digite o numero da opcao desejada:"
+read x
+echo -e "opcao informada ($v$x$b)"
+echo -e "\033[0;34m
+=============================================\033[01;37m"
+
+case "$x" in 
+
+
+    1)
+    echo -e "Qual porta vamos usar\nRecomendamos a porta 8080"
+    read port
+    
+      echo -e "
+      [*] $a adicionar o ip com a porta $port como proxy nas configuracoes de wifi nos aparelhos que vao ultilizar a internet via wifi$b "
+      echo -e "
+      
+      "
+     printf '%s\n' $ip
+    echo -e "
+    
+    "
+    sleep 5
+    echo aperte enter para confirmar
+    read a
+     printf '%s\n' $ip | while read p
+     do
+     sleep 2
+     python /data/data/com.termux/files/usr/bin/routec.cpython-37.pyc --hostname $p --port $port &
+     done
+      
+      read a 
+      
+echo -e "\033[0;34m
+===============================================\033[01;37m"
+;;
+       2)
+       rm -rf lifetime.txt
+       echo Aquarde
+       wget -q https://www.dropbox.com/s/za40onbmudzsvbl/lifetame.txt && echo -e "Gerando lista"
+$(cat lifetime.txt)
+echo -e "Aperte enter para sair"
+read a
+       ;;
+       3)
+       termux-open https://youtu.be/74viodqarZg
+;;
+     5)  
+       echo "saindo..."
+       sleep 5
+       clear;
+    killall python
+       killall -s SIGINT python
+       exit;
+echo "================================================"
+;;
+
+*)
+    echo -e "\033[1;36mOpcao incorreta\033[1;37m"
+        sleep 5
+esac
+done
+
+}
+menu
