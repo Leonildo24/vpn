@@ -1,0 +1,27 @@
+
+=======================================
+
+SSH: 142.11.87.131
+Port: 22 
+login: test
+password: 123456
+Cidade: Los Angeles
+
+=======================================
+
+SSH: 174.98.115.89
+Port: 22
+login: test
+password: 123456
+Regiao: Wisconsin
+
+=======================================
+
+SSH: 174.98.23.165
+Port: 22
+login: test
+password: 123456
+Cidade: North Olmsted
+
+=======================================
+
